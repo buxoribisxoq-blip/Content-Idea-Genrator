@@ -73,90 +73,66 @@ text-align:left;
 
 <script>
 
+function getRandom(arr){
+return arr[Math.floor(Math.random()*arr.length)];
+}
+
 function generate(){
 
 let topic=document.getElementById("topic").value.toLowerCase();
 let lang=document.getElementById("lang").value;
 
-let data={
-fitness:{
+let hooks={
 en:[
-"Instagram: 5 mistakes beginners make in fitness",
-"YouTube: 30 day fitness transformation",
-"TikTok: What I eat in a day for fitness"
+"Most people fail at",
+"You are doing this wrong in",
+"This will change your",
+"Nobody talks about",
+"The truth about"
 ],
 uz:[
-"Instagram: Fitnesda 5 ta asosiy xato",
-"YouTube: 30 kunlik transformatsiya",
-"TikTok: Bir kunda nima yeyman"
+"Ko‘pchilik xato qiladi",
+"Siz noto‘g‘ri qilyapsiz",
+"Bu sizning hayotingizni o‘zgartiradi",
+"Hech kim gapirmaydi",
+"Haqiqat shuki"
 ]
-},
-
-business:{
-en:[
-"Instagram: Start business with $0",
-"YouTube: 5 business ideas for beginners",
-"TikTok: Why people fail in business"
-],
-uz:[
-"Instagram: 0 so‘m bilan biznes boshlash",
-"YouTube: Boshlovchilar uchun 5 g‘oya",
-"TikTok: Nega odamlar biznesda yutqazadi"
-]
-},
-
-education:{
-en:[
-"Instagram: Learn faster techniques",
-"YouTube: Study smarter not harder",
-"TikTok: Memory hacks for students"
-],
-uz:[
-"Instagram: Tez o‘rganish usullari",
-"YouTube: Aqlli o‘qish metodlari",
-"TikTok: Xotirani kuchaytirish"
-]
-},
-
-technology:{
-en:[
-"Instagram: Future of AI",
-"YouTube: Tech trends 2026",
-"TikTok: Cool tech facts"
-],
-uz:[
-"Instagram: Texnologiya kelajagi",
-"YouTube: 2026 trendlar",
-"TikTok: Qiziqarli tex faktlar"
-]
-},
-
-travel:{
-en:[
-"Instagram: Hidden travel places",
-"YouTube: Travel guide 2026",
-"TikTok: Cheap travel hacks"
-],
-uz:[
-"Instagram: Yashirin sayohat joylari",
-"YouTube: Sayohat qo‘llanma",
-"TikTok: Arzon sayohat usullari"
-]
-}
-
 };
 
-let ideas=data[topic];
+let data={
+fitness:["workout","diet","gym","fat loss"],
+business:["startup","money","online business","freelancing"],
+education:["study","learning","memory","focus"],
+motivation:["success","life","discipline","goals"],
+technology:["AI","apps","gadgets","future"],
+travel:["cheap travel","hidden places","adventure","countries"],
+finance:["saving money","investing","crypto","income"],
+lifestyle:["habits","routine","productivity","self care"],
+entertainment:["fun","movies","music","viral videos"],
+marketing:["social media","branding","growth","ads"],
+ai:["AI tools","chatbots","automation","future AI"],
+crypto:["bitcoin","trading","web3","blockchain"]
+};
 
-if(!ideas){
-document.getElementById("result").innerHTML="❌ Topic topilmadi: fitness, business, education, technology, travel";
+let list=data[topic];
+
+if(!list){
+document.getElementById("result").innerHTML="❌ Topic topilmadi";
 return;
 }
 
 let output="<div class='result'>";
 
-for(let i=0;i<ideas[lang].length;i++){
-output+="<p>👉 "+ideas[lang][i]+"</p>";
+for(let i=0;i<10;i++){
+
+let hook=getRandom(hooks[lang]);
+let item=getRandom(list);
+
+if(lang==="en"){
+output+="<p>👉 "+hook+" "+item+" idea</p>";
+}else{
+output+="<p>👉 "+hook+" "+item+" g‘oyasi</p>";
+}
 }
 
 output+="</div>";
@@ -164,7 +140,6 @@ output+="</div>";
 document.getElementById("result").innerHTML=output;
 
 }
-
 </script>
 
 </body>
