@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Content Idea Generator</title>
+
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#667eea,#764ba2);
+color:white;
+text-align:center;
+padding:20px;
+margin:0;
+}
+
+.box{
+background:rgba(255,255,255,0.1);
+padding:20px;
+max-width:500px;
+margin:auto;
+border-radius:15px;
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+border:none;
+border-radius:8px;
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:8px;
+background:#00ffcc;
+font-weight:bold;
+cursor:pointer;
+}
+
+.result{
+background:white;
+color:black;
+margin-top:20px;
+padding:15px;
+border-radius:10px;
+text-align:left;
+}
+
+.lang{
+margin-bottom:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 Content Idea Generator</h1>
+
+<div class="box">
+
+<select id="lang" class="lang">
+<option value="en">English</option>
+<option value="uz">O'zbek</option>
+</select>
+
+<input id="topic" placeholder="Enter topic (e.g. fitness, business)">
+
+<button onclick="generate()">Generate Ideas</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function generate(){
+
+let topic=document.getElementById("topic").value.toLowerCase();
+let lang=document.getElementById("lang").value;
+
+let data={
+fitness:{
+en:[
+"Instagram: 5 mistakes beginners make in fitness",
+"YouTube: 30 day body transformation challenge",
+"TikTok: What I eat in a day to stay fit"
+],
+uz:[
+"Instagram: Fitnesda boshlovchilar qiladigan 5 xato",
+"YouTube: 30 kunlik transformatsiya challenge",
+"TikTok: Bir kunda nima yeyman sog‘lom bo‘lish uchun"
+]
+},
+
+business:{
+en:[
+"Instagram: How to start business with $0",
+"YouTube: 3 online business ideas for beginners",
+"TikTok: Why most people fail in business"
+],
+uz:[
+"Instagram: 0 so‘m bilan biznes boshlash",
+"YouTube: Boshlovchilar uchun 3 biznes g‘oya",
+"TikTok: Nega ko‘pchilik biznesda yutqazadi"
+]
+},
+
+education:{
+en:[
+"Instagram: Study smarter not harder tips",
+"YouTube: How to learn faster",
+"TikTok: Memory hack for students"
+],
+uz:[
+"Instagram: Qanday tez va oson o‘qish",
+"YouTube: Tez o‘rganish usullari",
+"TikTok: Xotirani kuchaytirish hiylasi"
+]
+}
+
+};
+
+let ideas=data[topic];
+
+if(!ideas){
+document.getElementById("result").innerHTML="No ideas found for this topic";
+return;
+}
+
+let output="<div class='result'>";
+
+for(let i=0;i<ideas[lang].length;i++){
+output+="<p>👉 "+ideas[lang][i]+"</p>";
+}
+
+output+="</div>";
+
+document.getElementById("result").innerHTML=output;
+
+}
+
+</script>
+
+</body>
+</html>
