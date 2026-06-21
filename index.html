@@ -72,9 +72,32 @@ text-align:left;
 </div>
 
 <script>
-
 function getRandom(arr){
 return arr[Math.floor(Math.random()*arr.length)];
+}
+
+let savedIdeas = [];
+
+function copyText(text){
+navigator.clipboard.writeText(text);
+alert("Copied!");
+}
+
+function saveIdea(text){
+savedIdeas.push(text);
+alert("Saved!");
+}
+
+function showSaved(){
+let output="<div class='result'><h3>❤️ Saved Ideas</h3>";
+
+for(let i=0;i<savedIdeas.length;i++){
+output+="<p>"+savedIdeas[i]+"</p>";
+}
+
+output+="</div>";
+
+document.getElementById("result").innerHTML=output;
 }
 
 function generate(){
@@ -83,20 +106,8 @@ let topic=document.getElementById("topic").value.toLowerCase();
 let lang=document.getElementById("lang").value;
 
 let hooks={
-en:[
-"Most people fail at",
-"You are doing this wrong in",
-"This will change your",
-"Nobody talks about",
-"The truth about"
-],
-uz:[
-"Ko‘pchilik xato qiladi",
-"Siz noto‘g‘ri qilyapsiz",
-"Bu sizning hayotingizni o‘zgartiradi",
-"Hech kim gapirmaydi",
-"Haqiqat shuki"
-]
+en:["Most people fail at","You are doing this wrong in","This will change your","Nobody talks about","The truth about"],
+uz:["Ko‘pchilik xato qiladi","Siz noto‘g‘ri qilyapsiz","Bu hayotingizni o‘zgartiradi","Hech kim gapirmaydi","Haqiqat shuki"]
 };
 
 let data={
@@ -104,14 +115,12 @@ fitness:["workout","diet","gym","fat loss"],
 business:["startup","money","online business","freelancing"],
 education:["study","learning","memory","focus"],
 motivation:["success","life","discipline","goals"],
-technology:["AI","apps","gadgets","future"],
-travel:["cheap travel","hidden places","adventure","countries"],
-finance:["saving money","investing","crypto","income"],
+technology:["AI","apps","future tech","gadgets"],
+travel:["travel","cheap trips","hidden places","adventure"],
+finance:["saving money","investing","income","crypto"],
 lifestyle:["habits","routine","productivity","self care"],
-entertainment:["fun","movies","music","viral videos"],
-marketing:["social media","branding","growth","ads"],
-ai:["AI tools","chatbots","automation","future AI"],
-crypto:["bitcoin","trading","web3","blockchain"]
+entertainment:["movies","music","viral videos","fun"],
+marketing:["social media","branding","growth","ads"]
 };
 
 let list=data[topic];
@@ -128,18 +137,25 @@ for(let i=0;i<10;i++){
 let hook=getRandom(hooks[lang]);
 let item=getRandom(list);
 
-if(lang==="en"){
-output+="<p>👉 "+hook+" "+item+" idea</p>";
-}else{
-output+="<p>👉 "+hook+" "+item+" g‘oyasi</p>";
-}
+let idea=hook+" "+item;
+
+output+="
+<p>
+👉 "+idea+"<br>
+<button onclick=\"copyText('"+idea+"')\">Copy</button>
+<button onclick=\"saveIdea('"+idea+"')\">Save</button>
+</p>
+<hr>
+";
+
 }
 
-output+="</div>";
+output+="<button onclick='showSaved()'>❤️ Show Saved</button></div>";
 
 document.getElementById("result").innerHTML=output;
 
 }
+
 </script>
 
 </body>
