@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Content Idea Generator</title>
+<title>Content Idea Generator Pro</title>
 
 <style>
 body{
@@ -11,8 +11,8 @@ font-family:Arial;
 background:linear-gradient(135deg,#667eea,#764ba2);
 color:white;
 text-align:center;
-padding:20px;
 margin:0;
+padding:20px;
 }
 
 .box{
@@ -23,10 +23,10 @@ margin:auto;
 border-radius:15px;
 }
 
-input{
+input,select{
 width:90%;
 padding:10px;
-margin:10px;
+margin:8px;
 border:none;
 border-radius:8px;
 }
@@ -49,24 +49,21 @@ border-radius:10px;
 text-align:left;
 }
 
-.lang{
-margin-bottom:10px;
-}
 </style>
 </head>
 
 <body>
 
-<h1>🧠 Content Idea Generator</h1>
+<h1>🧠 Content Idea Generator Pro</h1>
 
 <div class="box">
 
-<select id="lang" class="lang">
+<select id="lang">
 <option value="en">English</option>
 <option value="uz">O'zbek</option>
 </select>
 
-<input id="topic" placeholder="Enter topic (e.g. fitness, business)">
+<input id="topic" placeholder="Enter topic (fitness, business, education)">
 
 <button onclick="generate()">Generate Ideas</button>
 
@@ -85,39 +82,65 @@ let data={
 fitness:{
 en:[
 "Instagram: 5 mistakes beginners make in fitness",
-"YouTube: 30 day body transformation challenge",
-"TikTok: What I eat in a day to stay fit"
+"YouTube: 30 day fitness transformation",
+"TikTok: What I eat in a day for fitness"
 ],
 uz:[
-"Instagram: Fitnesda boshlovchilar qiladigan 5 xato",
-"YouTube: 30 kunlik transformatsiya challenge",
-"TikTok: Bir kunda nima yeyman sog‘lom bo‘lish uchun"
+"Instagram: Fitnesda 5 ta asosiy xato",
+"YouTube: 30 kunlik transformatsiya",
+"TikTok: Bir kunda nima yeyman"
 ]
 },
 
 business:{
 en:[
-"Instagram: How to start business with $0",
-"YouTube: 3 online business ideas for beginners",
-"TikTok: Why most people fail in business"
+"Instagram: Start business with $0",
+"YouTube: 5 business ideas for beginners",
+"TikTok: Why people fail in business"
 ],
 uz:[
 "Instagram: 0 so‘m bilan biznes boshlash",
-"YouTube: Boshlovchilar uchun 3 biznes g‘oya",
-"TikTok: Nega ko‘pchilik biznesda yutqazadi"
+"YouTube: Boshlovchilar uchun 5 g‘oya",
+"TikTok: Nega odamlar biznesda yutqazadi"
 ]
 },
 
 education:{
 en:[
-"Instagram: Study smarter not harder tips",
-"YouTube: How to learn faster",
-"TikTok: Memory hack for students"
+"Instagram: Learn faster techniques",
+"YouTube: Study smarter not harder",
+"TikTok: Memory hacks for students"
 ],
 uz:[
-"Instagram: Qanday tez va oson o‘qish",
-"YouTube: Tez o‘rganish usullari",
-"TikTok: Xotirani kuchaytirish hiylasi"
+"Instagram: Tez o‘rganish usullari",
+"YouTube: Aqlli o‘qish metodlari",
+"TikTok: Xotirani kuchaytirish"
+]
+},
+
+technology:{
+en:[
+"Instagram: Future of AI",
+"YouTube: Tech trends 2026",
+"TikTok: Cool tech facts"
+],
+uz:[
+"Instagram: Texnologiya kelajagi",
+"YouTube: 2026 trendlar",
+"TikTok: Qiziqarli tex faktlar"
+]
+},
+
+travel:{
+en:[
+"Instagram: Hidden travel places",
+"YouTube: Travel guide 2026",
+"TikTok: Cheap travel hacks"
+],
+uz:[
+"Instagram: Yashirin sayohat joylari",
+"YouTube: Sayohat qo‘llanma",
+"TikTok: Arzon sayohat usullari"
 ]
 }
 
@@ -126,7 +149,7 @@ uz:[
 let ideas=data[topic];
 
 if(!ideas){
-document.getElementById("result").innerHTML="No ideas found for this topic";
+document.getElementById("result").innerHTML="❌ Topic topilmadi: fitness, business, education, technology, travel";
 return;
 }
 
